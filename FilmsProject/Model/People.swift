@@ -29,9 +29,9 @@ struct People: Codable {
     var type: String?
     var gender: Gender?
     var origin, location: Location?
-    var image: String?
+    var image: String
     var episode: [String]?
-    var url: [String]?
+    var url: String
     var created: String?
 }
 

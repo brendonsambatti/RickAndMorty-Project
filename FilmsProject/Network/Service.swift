@@ -9,9 +9,33 @@ import Foundation
 
 protocol ServiceDelegate:GenericService{
     func getPeople(completion: @escaping completion<[People]?>)
+    func getPhotos(completion: @escaping completion<[People]?>)
+
 }
 
-class Service:ServiceDelegate{
+class Service:ServiceDelegate{    
+    
+    func getPhotos(completion: @escaping completion<[People]?>) {
+        let urlString:String = "https://rickandmortyapi.com/api/character"
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data, error == nil else{
+                return
+            }
+            do {
+                let JsonResult = try  JSONDecoder().decode(PeopleResult.self, from: data)
+                DispatchQueue.main.async {
+                    completion(JsonResult.results, nil)
+                }
+            } catch {
+                completion(nil, Error.errorDescription(message: "deu ruim"))
+            }
+        }
+        task.resume()
+    }
+    
     func getPeople(completion: @escaping completion<[People]?>) {
         let urlString:String = "https://rickandmortyapi.com/api/character"
         
@@ -37,7 +61,7 @@ class Service:ServiceDelegate{
                 }
             }else{
                 completion(nil, Error.errorDescription(message: "Deu ruim", error: error))
-
+                
             }
         }
         task.resume()

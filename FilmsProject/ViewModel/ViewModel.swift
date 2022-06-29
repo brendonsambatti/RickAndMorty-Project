@@ -15,6 +15,7 @@ protocol ViewModelDelegate:AnyObject {
 class ViewModel{
     
     var data:[People] = []
+    var photos:[People] = []
     
     private var delegate:ViewModelDelegate?
     
@@ -30,7 +31,17 @@ class ViewModel{
                 print(success)
                 self.delegate?.success()
             }else{
-                print(error)
+                self.delegate?.error()
+            }
+        }
+    }
+    
+    public func getPhotos(){
+        self.service.getPhotos { success, error in
+            if let success = success{
+                self.photos = success
+                self.delegate?.success()
+            }else{
                 self.delegate?.error()
             }
         }
