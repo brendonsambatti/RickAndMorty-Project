@@ -13,6 +13,8 @@ protocol ViewControllerDelegate:AnyObject{
 
 class ViewController: UIViewController, UISearchBarDelegate {
     
+    let personViewModel:PersonViewModel = PersonViewModel()
+    
     var delegate:ViewControllerDelegate?
     
     func delegate(delegate:ViewControllerDelegate){
@@ -121,10 +123,13 @@ extension ViewController:UITableViewDelegate, UITableViewDataSource{
         if indexPath == indexPath{
             print(indexPath)
             self.delegate?.configData(indexPath: indexPath, data: self.viewModel.data)
+            self.personViewModel.label = self.viewModel.data[indexPath.row].name
+            print(self.viewModel.data[indexPath.row].name)
+            print(self.viewModel.data[indexPath.row].type as Any)
         }
             tableView.deselectRow(at: indexPath, animated: true)
 //            self.dataInfo = self.filterData[indexPath.row]
-            let storyBoard = UIStoryboard(name: "PersonViewController", bundle: nil)
+        let storyBoard = UIStoryboard(name: "PersonViewController", bundle: nil)
             let vC = storyBoard.instantiateViewController(identifier: "PersonViewController")
             self.present(vC, animated: true, completion: nil)
         }

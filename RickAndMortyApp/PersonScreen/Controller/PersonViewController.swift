@@ -8,13 +8,15 @@
 import UIKit
 
 class PersonViewController: UIViewController {
-    let data:[People] = []
-
+    
+    let personVM:PersonViewModel = PersonViewModel()
+    
     @IBOutlet weak var nameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.nameLabel.text = self.personVM.label
     }
 
 

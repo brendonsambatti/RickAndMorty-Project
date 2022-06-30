@@ -22,6 +22,7 @@
 		0CDFBEF0286CFBA600AC8B37 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFBEEE286CFBA600AC8B37 /* PersonViewController.swift */; };
 		0CDFBEF6286CFBEB00AC8B37 /* PersonViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CDFBEF5286CFBEB00AC8B37 /* PersonViewController.storyboard */; };
 		DA04F803286D40D5005C459A /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA04F802286D40D5005C459A /* UITextField.swift */; };
+		DA04F806286D4A02005C459A /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA04F805286D4A02005C459A /* PersonViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		0CDFBEEE286CFBA600AC8B37 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		0CDFBEF5286CFBEB00AC8B37 /* PersonViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonViewController.storyboard; sourceTree = "<group>"; };
 		DA04F802286D40D5005C459A /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		DA04F805286D4A02005C459A /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 		0CDFBEF2286CFBB200AC8B37 /* PersonScreen */ = {
 			isa = PBXGroup;
 			children = (
+				DA04F804286D49F3005C459A /* ViewModel */,
 				0CDFBEF4286CFBCB00AC8B37 /* Controller */,
 				0CDFBEF3286CFBC300AC8B37 /* View */,
 			);
@@ -172,6 +175,14 @@
 				DA04F802286D40D5005C459A /* UITextField.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DA04F804286D49F3005C459A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DA04F805286D4A02005C459A /* PersonViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,6 +260,7 @@
 				0C2E6821286B40300017DC3A /* People.swift in Sources */,
 				DA04F803286D40D5005C459A /* UITextField.swift in Sources */,
 				0C2E682E286B90A00017DC3A /* TableViewCell.swift in Sources */,
+				DA04F806286D4A02005C459A /* PersonViewModel.swift in Sources */,
 				0C2E680F286B3DE90017DC3A /* ViewController.swift in Sources */,
 				0C2E6823286B40800017DC3A /* Service.swift in Sources */,
 				0C2E680B286B3DE90017DC3A /* AppDelegate.swift in Sources */,
