@@ -15,7 +15,7 @@ protocol ViewModelDelegate:AnyObject {
 class ViewModel{
     
     var data:[People] = []
-    var photos:[People] = []    
+    var photos:[People] = []
     
     private var delegate:ViewModelDelegate?
     

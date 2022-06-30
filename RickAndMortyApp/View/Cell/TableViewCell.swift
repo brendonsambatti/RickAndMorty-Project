@@ -10,13 +10,11 @@ import UIKit
 class TableViewCell: UITableViewCell {
         
     @IBOutlet weak var label1: UILabel!
-    @IBOutlet weak var label2: UILabel!
-    @IBOutlet weak var label3: UILabel!
     @IBOutlet weak var userImage: UIImageView!
     
     let personViewModel:PersonViewController = PersonViewController()
     
-    let urlString:String = "https://rickandmortyapi.com/api/character"
+    let urlString:String = "https://rickandmortyapi.com/api/character/?page=\(0)"
     
     private var delegate:ViewModelDelegate?
     
@@ -55,19 +53,14 @@ class TableViewCell: UITableViewCell {
     }
     
     func setupCell(data:People){
-        let species:String = data.species?.rawValue ?? ""
-        let locations:String = data.location?.name ?? ""
-        
+
         if data.type == ""{
-            self.label1.text = "Nome: \(data.name )"
-            self.label2.text = "Tipo: \(species)"
-            self.label3.text = "Localização: \(locations)"
+            self.label1.text = "\(data.name )"
         }else{
-            self.label1.text = "Nome: \(data.name )"
-            self.label2.text = "Espécie: \(species)"
-            self.label3.text = "Localização: \(locations)"
+            self.label1.text = "\(data.name )"
 
         }
     }
+
     
 }

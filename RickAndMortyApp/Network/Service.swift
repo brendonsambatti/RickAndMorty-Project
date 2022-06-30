@@ -13,10 +13,11 @@ protocol ServiceDelegate:GenericService{
 
 }
 
-class Service:ServiceDelegate{    
+class Service:ServiceDelegate{
+    public var indexPage = 0
     
     func getPhotos(completion: @escaping completion<[People]?>) {
-        let urlString:String = "https://rickandmortyapi.com/api/character"
+        let urlString:String = "https://rickandmortyapi.com/api/character/?page=\(0)"
         guard let url = URL(string: urlString) else {
             return
         }
@@ -37,7 +38,7 @@ class Service:ServiceDelegate{
     }
     
     func getPeople(completion: @escaping completion<[People]?>) {
-        let urlString:String = "https://rickandmortyapi.com/api/character"
+        let urlString:String = "https://rickandmortyapi.com/api/character/?page=\(0)"
         
         guard let url:URL = URL(string: urlString) else {return completion(nil, Error.errorDescription(message: "Error ao tirar opcionalidade da URL"))}
         
@@ -67,4 +68,5 @@ class Service:ServiceDelegate{
         task.resume()
         
     }
+    
 }

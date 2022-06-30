@@ -7,33 +7,26 @@
 
 import UIKit
 
-protocol ViewControllerDelegate:AnyObject{
-    func configData(indexPath:IndexPath, data:[People])
-}
-
 class ViewController: UIViewController, UISearchBarDelegate {
-    
-    let personViewModel:PersonViewModel = PersonViewModel()
-    
-    var delegate:ViewControllerDelegate?
-    
-    func delegate(delegate:ViewControllerDelegate){
-        self.delegate = delegate
-    }
-    
+        
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var rightButton: UIButton!
+    @IBOutlet weak var leftButton: UIButton!
+    
+    
     let viewModel:ViewModel = ViewModel()
     let tableViewCell:TableViewCell = TableViewCell()
     let service:Service = Service()
-    @IBOutlet weak var searchBar: UISearchBar!
-    
     var filterData:[People] = []
     var dataInfo:People?
+    var indexPage = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.callViewDidLoad()
     }
+    
     
     func callViewDidLoad(){
         self.viewModel.delegate(delegate: self)
@@ -42,7 +35,6 @@ class ViewController: UIViewController, UISearchBarDelegate {
         self.configSearchBar()
         hideKeyboardWhenTappedAround()
     }
-    
     
     func configSearchBar(){
         self.searchBar.delegate = self
@@ -66,6 +58,22 @@ class ViewController: UIViewController, UISearchBarDelegate {
             }
         }
         self.tableView.reloadData()
+    }
+    
+    @IBAction func tappedRightButton(){
+        self.indexPage = indexPage + 1
+//        self.service.tappedRightButton()
+        self.tableView.reloadData()
+        self.viewModel.getPeople()
+        self.viewModel.getPhotos()
+    }
+    
+    @IBAction func tappedLeftButton(){
+        self.indexPage = indexPage - 1
+//            self.service.tappedLeftButton()
+            self.tableView.reloadData()
+            self.viewModel.getPeople()
+            self.viewModel.getPhotos()
     }
     
     func configTableView(){
@@ -119,19 +127,24 @@ extension ViewController:UITableViewDelegate, UITableViewDataSource{
         self.viewModel.heightForRow
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath == indexPath{
-            print(indexPath)
-            self.delegate?.configData(indexPath: indexPath, data: self.viewModel.data)
-            self.personViewModel.label = self.viewModel.data[indexPath.row].name
-            print(self.viewModel.data[indexPath.row].name)
-            print(self.viewModel.data[indexPath.row].type as Any)
+            let species:String = viewModel.data[indexPath.row].species?.rawValue ?? ""
+            let locations:String = viewModel.data[indexPath.row].location?.name ?? ""
+            let gender:String = viewModel.data[indexPath.row].gender?.rawValue ?? ""
+            
+            let imageURLStrings = viewModel.data[indexPath.row].image
+            let storyBoard = UIStoryboard(name: "PersonViewController", bundle: nil)
+                let vC = storyBoard.instantiateViewController(identifier: "PersonViewController") as! PersonViewController
+                self.present(vC, animated: true, completion: nil)
+            vC.nameLabel.text = "\(viewModel.data[indexPath.row].name)"
+            vC.personViewModel.configure(with: imageURLStrings, userImage: vC.personImage)
+            vC.label2.text = "Espécie: \(species)"
+            vC.label3.text = "Localização: \(locations)"
+            vC.label4.text = "Sexo: \(gender)"
         }
             tableView.deselectRow(at: indexPath, animated: true)
-//            self.dataInfo = self.filterData[indexPath.row]
-        let storyBoard = UIStoryboard(name: "PersonViewController", bundle: nil)
-            let vC = storyBoard.instantiateViewController(identifier: "PersonViewController")
-            self.present(vC, animated: true, completion: nil)
         }
     
 }

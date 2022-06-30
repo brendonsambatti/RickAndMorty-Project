@@ -8,24 +8,26 @@
 import UIKit
 
 class PersonViewController: UIViewController {
-    
-    let personVM:PersonViewModel = PersonViewModel()
+
+    let personViewModel:PersonViewModel = PersonViewModel()
     
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var label2: UILabel!
+    @IBOutlet weak var label3: UILabel!
+    @IBOutlet weak var label4: UILabel!
+    @IBOutlet weak var backButton:UIButton!
+    @IBOutlet weak var personImage: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.nameLabel.text = self.personVM.label
+        self.personViewModel.getPhotos()
+        self.personViewModel.configureImage(image: self.personImage)
+    }
+    
+    @IBAction func tappedBackButton(){
+        dismiss(animated: true, completion: nil)
     }
 
 
-}
-extension PersonViewController:ViewControllerDelegate{
-    func configData(indexPath: IndexPath, data: [People]) {
-        self.nameLabel.text = data[indexPath.row].name
-    }
-
-    
-    
 }
