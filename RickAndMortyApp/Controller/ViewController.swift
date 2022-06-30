@@ -7,8 +7,17 @@
 
 import UIKit
 
+protocol ViewControllerDelegate:AnyObject{
+    func configData(indexPath:IndexPath, data:[People])
+}
+
 class ViewController: UIViewController, UISearchBarDelegate {
     
+    var delegate:ViewControllerDelegate?
+    
+    func delegate(delegate:ViewControllerDelegate){
+        self.delegate = delegate
+    }
     
     @IBOutlet weak var tableView: UITableView!
     let viewModel:ViewModel = ViewModel()
@@ -29,6 +38,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
         self.viewModel.getPeople()
         self.viewModel.getPhotos()
         self.configSearchBar()
+        hideKeyboardWhenTappedAround()
     }
     
     
@@ -108,8 +118,12 @@ extension ViewController:UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath == indexPath{
+            print(indexPath)
+            self.delegate?.configData(indexPath: indexPath, data: self.viewModel.data)
+        }
             tableView.deselectRow(at: indexPath, animated: true)
-            self.dataInfo = self.filterData[indexPath.row]
+//            self.dataInfo = self.filterData[indexPath.row]
             let storyBoard = UIStoryboard(name: "PersonViewController", bundle: nil)
             let vC = storyBoard.instantiateViewController(identifier: "PersonViewController")
             self.present(vC, animated: true, completion: nil)

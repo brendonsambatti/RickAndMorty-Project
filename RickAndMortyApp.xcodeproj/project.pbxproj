@@ -21,6 +21,7 @@
 		0CDFBEED286CE04800AC8B37 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CDFBEEC286CE04800AC8B37 /* Launch Screen.storyboard */; };
 		0CDFBEF0286CFBA600AC8B37 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDFBEEE286CFBA600AC8B37 /* PersonViewController.swift */; };
 		0CDFBEF6286CFBEB00AC8B37 /* PersonViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CDFBEF5286CFBEB00AC8B37 /* PersonViewController.storyboard */; };
+		DA04F803286D40D5005C459A /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA04F802286D40D5005C459A /* UITextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		0CDFBEEC286CE04800AC8B37 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		0CDFBEEE286CFBA600AC8B37 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		0CDFBEF5286CFBEB00AC8B37 /* PersonViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonViewController.storyboard; sourceTree = "<group>"; };
+		DA04F802286D40D5005C459A /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 		0C2E6809286B3DE90017DC3A /* RickAndMortyApp */ = {
 			isa = PBXGroup;
 			children = (
+				DA04F801286D40BE005C459A /* Extensions */,
 				0CDFBEF2286CFBB200AC8B37 /* PersonScreen */,
 				0C2E682A286B90880017DC3A /* Controller */,
 				0C2E6829286B907E0017DC3A /* View */,
@@ -163,6 +166,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		DA04F801286D40BE005C459A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DA04F802286D40D5005C459A /* UITextField.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -236,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C2E6821286B40300017DC3A /* People.swift in Sources */,
+				DA04F803286D40D5005C459A /* UITextField.swift in Sources */,
 				0C2E682E286B90A00017DC3A /* TableViewCell.swift in Sources */,
 				0C2E680F286B3DE90017DC3A /* ViewController.swift in Sources */,
 				0C2E6823286B40800017DC3A /* Service.swift in Sources */,
