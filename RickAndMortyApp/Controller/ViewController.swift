@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController, UISearchBarDelegate {
     
+    
     @IBOutlet weak var tableView: UITableView!
     let viewModel:ViewModel = ViewModel()
     let tableViewCell:TableViewCell = TableViewCell()
@@ -16,12 +17,22 @@ class ViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     
     var filterData:[People] = []
+    var dataInfo:People?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.callViewDidLoad()
+    }
+    
+    func callViewDidLoad(){
         self.viewModel.delegate(delegate: self)
         self.viewModel.getPeople()
         self.viewModel.getPhotos()
+        self.configSearchBar()
+    }
+    
+    
+    func configSearchBar(){
         self.searchBar.delegate = self
         self.filterData = self.viewModel.data
         self.tableView.reloadData()
@@ -95,5 +106,13 @@ extension ViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         self.viewModel.heightForRow
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            tableView.deselectRow(at: indexPath, animated: true)
+            self.dataInfo = self.filterData[indexPath.row]
+            let storyBoard = UIStoryboard(name: "PersonViewController", bundle: nil)
+            let vC = storyBoard.instantiateViewController(identifier: "PersonViewController")
+            self.present(vC, animated: true, completion: nil)
+        }
     
 }

@@ -14,6 +14,8 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var label3: UILabel!
     @IBOutlet weak var userImage: UIImageView!
     
+    let personViewModel:PersonViewController = PersonViewController()
+    
     let urlString:String = "https://rickandmortyapi.com/api/character"
     
     private var delegate:ViewModelDelegate?
@@ -30,8 +32,9 @@ class TableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.userImage.contentMode = .scaleAspectFill
         self.userImage.clipsToBounds = true
-        self.userImage.layer.cornerRadius = userImage.frame.height/2
+        self.userImage.layer.cornerRadius = userImage.frame.height / 2
     }
     
     func configure(with urlString:String){
@@ -52,14 +55,17 @@ class TableViewCell: UITableViewCell {
     }
     
     func setupCell(data:People){
+        let species:String = data.species?.rawValue ?? ""
+        let locations:String = data.location?.name ?? ""
+        
         if data.type == ""{
             self.label1.text = "Nome: \(data.name )"
-            self.label2.text = "Tipo: Não específicado"
-            self.label3.text = "ID: \(data.id ?? 0)"
+            self.label2.text = "Tipo: \(species)"
+            self.label3.text = "Localização: \(locations)"
         }else{
             self.label1.text = "Nome: \(data.name )"
-            self.label2.text = "Tipo: \(data.type ?? "Humano")"
-            self.label3.text = "ID: \(data.id ?? 0)"
+            self.label2.text = "Espécie: \(species)"
+            self.label3.text = "Localização: \(locations)"
 
         }
     }
